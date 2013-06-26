@@ -26,19 +26,19 @@ def main():
 				dport = sys.argv[3]
 				string = sys.argv[4]
 				
-				# Validate IP
-				try:
-					socket.inet_aton(ip)
-				except:
-					print >> sys.stderr, "Error: Not a valid IP"
+				# Check to see if protocol is valid
+				if not (proto == "TCP" or proto == "UDP"):
+					print >> sys.stderr, "Error: Protocol must be either TCP or UDP"
 					sys.exit(1)
-				else:
-					# Check to see if protocol is valid
-					if not (proto == "TCP" or proto == "UDP"):
-						print >> sys.stderr, "Error: Protocol must be either TCP or UDP"
+				else:	
+					# Validate IP
+					try:
+						socket.inet_aton(ip)
+					except:
+						print >> sys.stderr, "Error: Not a valid IP"										
 						sys.exit(1)
-					else:	
-						# Check to see if packet count is specified
+					else:
+					# Check to see if packet count is specified
 						try:
 							sys.argv[5]
 						except: 
